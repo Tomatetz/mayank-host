@@ -847,6 +847,37 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   };
 }
 
+export interface ApiContactFormContactForm extends Schema.CollectionType {
+  collectionName: 'contact_forms';
+  info: {
+    singularName: 'contact-form';
+    pluralName: 'contact-forms';
+    displayName: 'Contact form';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    email: Attribute.Email & Attribute.Required;
+    message: Attribute.Text & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact-form.contact-form',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact-form.contact-form',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiFeedbackFeedback extends Schema.CollectionType {
   collectionName: 'feedbacks';
   info: {
@@ -954,6 +985,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::about.about': ApiAboutAbout;
       'api::article.article': ApiArticleArticle;
+      'api::contact-form.contact-form': ApiContactFormContactForm;
       'api::feedback.feedback': ApiFeedbackFeedback;
       'api::project.project': ApiProjectProject;
       'api::work.work': ApiWorkWork;
