@@ -884,6 +884,7 @@ export interface ApiFeedbackFeedback extends Schema.CollectionType {
     singularName: 'feedback';
     pluralName: 'feedbacks';
     displayName: 'feedback';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -892,6 +893,7 @@ export interface ApiFeedbackFeedback extends Schema.CollectionType {
     name: Attribute.String & Attribute.Required;
     feedback: Attribute.Text & Attribute.Required;
     image: Attribute.Media & Attribute.Required;
+    link: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
